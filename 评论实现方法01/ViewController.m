@@ -10,7 +10,9 @@
 #import "MJRefresh.h"
 #import "pinglunmodel.h"
 #import "AFManager.h"
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "keyBoardToolView.h"
+#import "XYView.h"
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,keyBoardToolViewDelegate>
 @property (nonatomic,strong) UITableView *maintable;
 @property (nonatomic,strong) UIView *headview;
 
@@ -18,6 +20,11 @@
 @property (nonatomic, strong) NSMutableArray *carGroups;
 
 @property (nonatomic,strong) NSMutableArray *sonCommentarr;
+
+@property (nonatomic,strong) NSMutableArray *pinglunarr;
+
+@property (nonatomic ,strong)XYView *views;
+@property (nonatomic, assign) CGFloat keyBoardHeight;
 
 @end
 static NSString *cellidentfid = @"cellidentfid";
@@ -31,7 +38,18 @@ static NSString *cellidentfid = @"cellidentfid";
     //[self addHeader];
     [self datafromweb];
 
+
     [self.view addSubview:self.maintable];
+    //利用通知中心监听键盘的显示和消失
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyBoardAction:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyBoardAction:) name:UIKeyboardWillHideNotification object:nil];
+    
+    self.views = [XYView XYveiw];
+    
+    self.views.frame = CGRectMake(0,self.view.frame.size.height - 40, self.view.frame.size.width, 40);
+    [self.views.btn addTarget:self action:@selector(ceacllBtn:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:self.views];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,6 +57,9 @@ static NSString *cellidentfid = @"cellidentfid";
     // Dispose of any resources that can be recreated.
     
 }
+
+
+
 
 -(void)datafromweb
 {
@@ -48,7 +69,7 @@ static NSString *cellidentfid = @"cellidentfid";
     
     NSLog(@"arr=========%@",_carGroups);
     
-    
+    self.pinglunarr = [NSMutableArray array];
     
     
     [AFManager getReqURL:@"http://np.iwenyu.cn/forum/index/detail.html?id=1&page=1&token=" block:^(id infor) {
@@ -71,15 +92,10 @@ static NSString *cellidentfid = @"cellidentfid";
             
             [self.sonCommentarr addObject:self.cellmodel.cars];
             
-//            for (int j = 0; j<self.sonCommentarr.count; j++) {
-//                self.cellmodel.
-//                [self.cellmodel.cars addObject:@"12211"];
-//            }
-            
             
             [self.carGroups addObject:self.cellmodel];
         }
-        NSLog(@"sonComment---------------%@",self.sonCommentarr);
+        NSLog(@"sonComment---------------%@",self.pinglunarr);
         
         [self.maintable reloadData];
     } errorblock:^(NSError *error) {
@@ -178,8 +194,14 @@ static NSString *cellidentfid = @"cellidentfid";
     pinglunmodel *cg = self.carGroups[indexPath.section];
     // 取车第indexPath.row这行对应的品牌名称
     NSString *car = [cg.cars[indexPath.row] objectForKey:@"content"];
+//    for (int i = 0; i<cg.cars.count; i++) {
+//        NSDictionary *dit = [cg.cars objectAtIndex:i];
+//        NSString *str = [dit objectForKey:@"content"];
+//        [self.pinglunarr addObject:str];
+//    }
     // 设置cell显示的文字
     cell.textLabel.text = car;
+    //cell.textLabel.text = self.pinglunarr[indexPath.row];
     return cell;
 }
 
@@ -203,5 +225,39 @@ static NSString *cellidentfid = @"cellidentfid";
 {
     return 0;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"12");
+    [self.views.textTF becomeFirstResponder];
+}
+
+- (void)handleKeyBoardAction:(NSNotification *)notification {
+    NSLog(@"%@",notification);
+    //1、计算动画前后的差值
+    CGRect beginFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGRect endFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    CGFloat detalY = endFrame.origin.y - beginFrame.origin.y;
+    
+    //2、根据差值更改_textView的高度
+    CGFloat frame = self.views.frame.origin.y;
+    frame += detalY;
+    self.views.frame = CGRectMake(0, frame, self.view.frame.size.width, 40);
+    
+}
+
+- (void)ceacllBtn:(id)sender {
+    
+    [_views.textTF resignFirstResponder];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+
+
 
 @end

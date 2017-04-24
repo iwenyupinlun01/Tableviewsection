@@ -16,6 +16,9 @@
 		53E412E41EA9A5F900EBC0CE /* pinglunmodel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E412E31EA9A5F900EBC0CE /* pinglunmodel.m */; };
 		53E412E81EA9B3E400EBC0CE /* AFManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E412E71EA9B3E400EBC0CE /* AFManager.m */; };
 		53E412EB1EA9DCC000EBC0CE /* cellarray.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E412EA1EA9DCC000EBC0CE /* cellarray.m */; };
+		53E863BD1EAD01FD001F6FD8 /* keyBoardToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E863BC1EAD01FD001F6FD8 /* keyBoardToolView.m */; };
+		53E863C11EAD05F5001F6FD8 /* XYView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E863BF1EAD05F5001F6FD8 /* XYView.m */; };
+		53E863C21EAD05F5001F6FD8 /* XYView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53E863C01EAD05F5001F6FD8 /* XYView.xib */; };
 		F849774907503E39FB6ECC2A /* libPods-评论实现方法01.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB2607706DF79A277D5947D /* libPods-评论实现方法01.a */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +41,11 @@
 		53E412E71EA9B3E400EBC0CE /* AFManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFManager.m; sourceTree = "<group>"; };
 		53E412E91EA9DCC000EBC0CE /* cellarray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cellarray.h; sourceTree = "<group>"; };
 		53E412EA1EA9DCC000EBC0CE /* cellarray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cellarray.m; sourceTree = "<group>"; };
+		53E863BB1EAD01FD001F6FD8 /* keyBoardToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = keyBoardToolView.h; path = "评论实现方法01/keyBoardToolView.h"; sourceTree = "<group>"; };
+		53E863BC1EAD01FD001F6FD8 /* keyBoardToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = keyBoardToolView.m; path = "评论实现方法01/keyBoardToolView.m"; sourceTree = "<group>"; };
+		53E863BE1EAD05F5001F6FD8 /* XYView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XYView.h; path = "评论实现方法01/XYView.h"; sourceTree = "<group>"; };
+		53E863BF1EAD05F5001F6FD8 /* XYView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XYView.m; path = "评论实现方法01/XYView.m"; sourceTree = "<group>"; };
+		53E863C01EAD05F5001F6FD8 /* XYView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XYView.xib; path = "评论实现方法01/XYView.xib"; sourceTree = "<group>"; };
 		D43DFA0916A8A29E38E064B8 /* Pods-评论实现方法01.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-评论实现方法01.debug.xcconfig"; path = "Pods/Target Support Files/Pods-评论实现方法01/Pods-评论实现方法01.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +72,11 @@
 		53E412BF1EA9045400EBC0CE = {
 			isa = PBXGroup;
 			children = (
+				53E863BB1EAD01FD001F6FD8 /* keyBoardToolView.h */,
+				53E863BC1EAD01FD001F6FD8 /* keyBoardToolView.m */,
+				53E863BE1EAD05F5001F6FD8 /* XYView.h */,
+				53E863BF1EAD05F5001F6FD8 /* XYView.m */,
+				53E863C01EAD05F5001F6FD8 /* XYView.xib */,
 				53E412E51EA9B3E400EBC0CE /* AFManager */,
 				53E412CA1EA9045500EBC0CE /* 评论实现方法01 */,
 				53E412C91EA9045500EBC0CE /* Products */,
@@ -192,6 +205,7 @@
 				53E412DB1EA9045500EBC0CE /* LaunchScreen.storyboard in Resources */,
 				53E412D81EA9045500EBC0CE /* Assets.xcassets in Resources */,
 				53E412D61EA9045500EBC0CE /* Main.storyboard in Resources */,
+				53E863C21EAD05F5001F6FD8 /* XYView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,8 +268,10 @@
 				53E412E81EA9B3E400EBC0CE /* AFManager.m in Sources */,
 				53E412D01EA9045500EBC0CE /* AppDelegate.m in Sources */,
 				53E412CD1EA9045500EBC0CE /* main.m in Sources */,
+				53E863BD1EAD01FD001F6FD8 /* keyBoardToolView.m in Sources */,
 				53E412E41EA9A5F900EBC0CE /* pinglunmodel.m in Sources */,
 				53E412EB1EA9DCC000EBC0CE /* cellarray.m in Sources */,
+				53E863C11EAD05F5001F6FD8 /* XYView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
